@@ -6,7 +6,7 @@ const authMiddleware = require("../middlewares/authMiddleware");
 
 // register new user
 
-router.post("/register", async (req, res) => {
+router.all("/register", async (req, res) => {
     try {
       const existingUser = await User.findOne({ email: req.body.email });
       if (existingUser) {
@@ -36,7 +36,7 @@ router.post("/register", async (req, res) => {
 
   // login user
 
-router.post("/login", async (req, res) => {
+router.all("/login", async (req, res) => {
     try {
       const userExists = await User.findOne({ email: req.body.email });
       if (!userExists) {
@@ -88,7 +88,7 @@ router.post("/login", async (req, res) => {
 
 // get user by id
 
-router.post("/get-user-by-id", authMiddleware, async (req, res) => {
+router.all("/get-user-by-id", authMiddleware, async (req, res) => {
     try {
       const user = await User.findById(req.body.userId);
       res.send({
@@ -106,7 +106,7 @@ router.post("/get-user-by-id", authMiddleware, async (req, res) => {
   });
   
 // get all users
-router.post("/get-all-users", authMiddleware, async (req, res) => {
+router.all("/get-all-users", authMiddleware, async (req, res) => {
   try {
     const users = await User.find({});
     res.send({
@@ -125,7 +125,7 @@ router.post("/get-all-users", authMiddleware, async (req, res) => {
 
 // update user
 
-router.post("/update-user-permissions", authMiddleware, async (req, res) => {
+router.all("/update-user-permissions", authMiddleware, async (req, res) => {
   try {
     await User.findByIdAndUpdate(req.body._id, req.body);
     res.send({
