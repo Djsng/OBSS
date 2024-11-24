@@ -1,19 +1,24 @@
-const express = require('express');
-const app = express();
-require('dotenv').config();
-const dbConfig = require("./config/dbConfig");
-
-// Middleware
-app.use(express.json({ limit: '10mb' }));
-
-// Routes
-const usersRoute = require("./routes/usersRoute");
-const busesRoute = require("./routes/busesRoute");
-const bookingsRoute = require("./routes/bookingRoute");
-
-app.use("/api/users", usersRoute);
-app.use("/api/buses", busesRoute);
-app.use("/api/bookings", bookingsRoute);
-
-// Export the app for Vercel
-module.exports = app;
+{
+  "name": "onlinebusservicesystem",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@stripe/stripe-js": "^5.0.0",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.8.1",
+    "nodemailer": "^6.9.16",
+    "nodemon": "^3.1.7",
+    "react-to-print": "^3.0.2",
+    "stripe": "^17.3.1",
+    "uuid": "^11.0.3"
+  }
+}
